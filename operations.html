@@ -7,40 +7,52 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Container for the Operations View -->
+    <!-- Main Container -->
     <div id="operations-container">
-        <!-- Section for New Commodity Type -->
-        <div class="operation-section">
-            <h2>New Commodity Type</h2>
-            <input type="text" id="newCommodityType" placeholder="Commodity Type">
-            <button onclick="addCommodityType()">Add Commodity</button>
+        <!-- Left Section for Station Blocks -->
+        <div id="station-blocks-container">
+            <h2>Stations</h2>
+            <div id="station-display">
+                <!-- Dynamic station blocks will appear here -->
+            </div>
         </div>
 
-        <!-- Section for New Station -->
-        <div class="operation-section">
-            <h2>New Station</h2>
-            <input type="text" id="stationLat" placeholder="Latitude">
-            <input type="text" id="stationLon" placeholder="Longitude">
-            <input type="text" id="stationName" placeholder="Station Name">
-            <button onclick="addStation()">Add Station</button>
-        </div>
+        <!-- Right Section for Form Controls -->
+        <div id="form-controls">
+            <!-- New Commodity Type Section -->
+            <div class="form-section">
+                <h3>New Commodity Type</h3>
+                <input type="text" id="newCommodityType" placeholder="Commodity Type">
+                <button onclick="addCommodityType()">Add Commodity</button>
+            </div>
 
-        <!-- Section for Update Quantity -->
-        <div class="operation-section">
-            <h2>Update Quantity</h2>
-            <select id="stationSelect">
-                <option value="">Select Station</option>
-            </select>
-            <select id="commoditySelect">
-                <option value="">Select Commodity</option>
-            </select>
-            <input type="number" id="commodityQuantity" placeholder="Quantity" min="1">
-            <button onclick="updateQuantity()">Add</button>
-        </div>
+            <!-- New Station Section -->
+            <div class="form-section">
+                <h3>New Station</h3>
+                <input type="text" id="stationLat" placeholder="Latitude">
+                <input type="text" id="stationLon" placeholder="Longitude">
+                <input type="text" id="stationName" placeholder="Station Name">
+                <button onclick="addStation()">Add Station</button>
+            </div>
 
-        <!-- Dynamic Station Blocks Display -->
-        <div id="station-display">
-            <!-- Station Blocks will be populated here by JavaScript -->
+            <!-- Update Quantity Section -->
+            <div class="form-section">
+                <h3>Update Quantity</h3>
+                <select id="stationSelect">
+                    <option value="">Select Station</option>
+                </select>
+                <select id="commoditySelect">
+                    <option value="">Select Commodity</option>
+                </select>
+                <input type="number" id="commodityQuantity" placeholder="Quantity" min="1">
+                <button onclick="updateQuantity()">Update</button>
+            </div>
+
+            <!-- Urgency Section -->
+            <div class="form-section">
+                <h3>Urgency</h3>
+                <p>Customize based on urgency requirements.</p>
+            </div>
         </div>
     </div>
 

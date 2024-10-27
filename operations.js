@@ -2,17 +2,17 @@
 let stations = JSON.parse(localStorage.getItem('stations')) || {};
 let commodityTypes = JSON.parse(localStorage.getItem('commodityTypes')) || [];
 
-// Function to save stations
+// Save stations to localStorage
 function saveStations() {
     localStorage.setItem('stations', JSON.stringify(stations));
 }
 
-// Function to save commodity types
+// Save commodity types to localStorage
 function saveCommodityTypes() {
     localStorage.setItem('commodityTypes', JSON.stringify(commodityTypes));
 }
 
-// Function to add a new commodity type
+// Add a new commodity type
 function addCommodityType() {
     const newType = document.getElementById('newCommodityType').value;
     if (newType && !commodityTypes.includes(newType)) {
@@ -23,7 +23,7 @@ function addCommodityType() {
     }
 }
 
-// Function to add a new station
+// Add a new station
 function addStation() {
     const name = document.getElementById('stationName').value;
     const lat = parseFloat(document.getElementById('stationLat').value);
@@ -40,7 +40,7 @@ function addStation() {
     }
 }
 
-// Function to update the quantity of a commodity at a station
+// Update the quantity of a commodity at a station
 function updateQuantity() {
     const stationName = document.getElementById('stationSelect').value;
     const commodity = document.getElementById('commoditySelect').value;
@@ -81,7 +81,7 @@ function updateCommoditySelect() {
     });
 }
 
-// Function to render station blocks
+// Render station blocks dynamically
 function renderStationBlocks() {
     const stationDisplay = document.getElementById('station-display');
     stationDisplay.innerHTML = '';
@@ -92,7 +92,7 @@ function renderStationBlocks() {
 
         let commoditiesHtml = '';
         Object.entries(station.commodities).forEach(([commodity, quantity]) => {
-            commoditiesHtml += `<div>${commodity}: ${quantity}</div>`;
+            commoditiesHtml += `<div class="commodity-item"><span>${commodity}</span>: <span>${quantity}</span></div>`;
         });
 
         stationBlock.innerHTML = `<h3>${stationName}</h3><div>${commoditiesHtml}</div>`;
@@ -100,7 +100,7 @@ function renderStationBlocks() {
     });
 }
 
-// Initialize on page load
+// Initialize page on load
 document.addEventListener('DOMContentLoaded', () => {
     updateStationSelect();
     updateCommoditySelect();

@@ -3,29 +3,24 @@ let stations = JSON.parse(localStorage.getItem('stations')) || {};
 
 // Initialize map and markers array
 let map;
-let markers = {};
+let markers = [];
 
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("Document loaded. Initializing map...");
-
     // Initialize the map
     map = L.map('map').setView([20.5937, 78.9629], 5); // Default view
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    console.log("Map initialized. Updating markers...");
     // Add markers for stations with commodities and fit map to markers
     updateMarkersAndFitMap();
 });
 
 // Function to update markers and fit map view to bounds
 function updateMarkersAndFitMap() {
-    console.log("Updating markers...");
-
     // Clear existing markers from the map
-    Object.keys(markers).forEach(markerKey => map.removeLayer(markers[markerKey]));
-    markers = {}; // Reset markers object
+    markers.forEach(marker => map.removeLayer(marker));
+    markers = []; // Reset markers array
 
     // Define bounds to dynamically fit all markers
     const bounds = L.latLngBounds([]);
@@ -48,7 +43,7 @@ function updateMarkersAndFitMap() {
             const marker = L.marker([station.lat, station.lon])
                 .addTo(map)
                 .bindPopup(popupContent);
-            markers[stationName] = marker; // Add marker to object
+            markers.push(marker); // Add marker to array
 
             // Extend bounds to include this marker's location
             bounds.extend(marker.getLatLng());
@@ -56,11 +51,10 @@ function updateMarkersAndFitMap() {
     });
 
     // If we have at least one marker, fit the map view to the bounds
-    if (Object.keys(markers).length > 0) {
+    if (markers.length > 0) {
         map.fitBounds(bounds);
     } else {
         // Default view if no markers are available
-        console.log("No markers found. Setting default view.");
         map.setView([20.5937, 78.9629], 5);
     }
 }

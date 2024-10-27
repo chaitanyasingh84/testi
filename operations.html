@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operations</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Container for the Operations View -->
+    <div id="operations-container">
+        <!-- Section for New Commodity Type -->
+        <div class="operation-section">
+            <h2>New Commodity Type</h2>
+            <input type="text" id="newCommodityType" placeholder="Commodity Type">
+            <button onclick="addCommodityType()">Add Commodity</button>
+        </div>
+
+        <!-- Section for New Station -->
+        <div class="operation-section">
+            <h2>New Station</h2>
+            <input type="text" id="stationLat" placeholder="Latitude">
+            <input type="text" id="stationLon" placeholder="Longitude">
+            <input type="text" id="stationName" placeholder="Station Name">
+            <button onclick="addStation()">Add Station</button>
+        </div>
+
+        <!-- Section for Update Quantity -->
+        <div class="operation-section">
+            <h2>Update Quantity</h2>
+            <select id="stationSelect">
+                <option value="">Select Station</option>
+            </select>
+            <select id="commoditySelect">
+                <option value="">Select Commodity</option>
+            </select>
+            <input type="number" id="commodityQuantity" placeholder="Quantity" min="1">
+            <button onclick="updateQuantity()">Add</button>
+        </div>
+
+        <!-- Dynamic Station Blocks Display -->
+        <div id="station-display">
+            <!-- Station Blocks will be populated here by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Operations JavaScript -->
+    <script src="operations.js"></script>
+</body>
+</html>

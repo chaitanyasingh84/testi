@@ -6,18 +6,23 @@ let map;
 let markers = {};
 
 document.addEventListener("DOMContentLoaded", () => {
+    console.log("Document loaded. Initializing map...");
+
     // Initialize the map
     map = L.map('map').setView([20.5937, 78.9629], 5); // Default view
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
+    console.log("Map initialized. Updating markers...");
     // Add markers for stations with commodities and fit map to markers
     updateMarkersAndFitMap();
 });
 
 // Function to update markers and fit map view to bounds
 function updateMarkersAndFitMap() {
+    console.log("Updating markers...");
+
     // Clear existing markers from the map
     Object.keys(markers).forEach(markerKey => map.removeLayer(markers[markerKey]));
     markers = {}; // Reset markers object
@@ -55,6 +60,7 @@ function updateMarkersAndFitMap() {
         map.fitBounds(bounds);
     } else {
         // Default view if no markers are available
+        console.log("No markers found. Setting default view.");
         map.setView([20.5937, 78.9629], 5);
     }
 }

@@ -40,20 +40,29 @@ function addStation() {
     }
 }
 
-// Update the quantity of a commodity at a station
+// Update the quantity of a commodity at a station, allowing both positive and negative values
 function updateQuantity() {
     const stationName = document.getElementById('stationSelect').value;
     const commodity = document.getElementById('commoditySelect').value;
     const quantity = parseInt(document.getElementById('commodityQuantity').value);
 
-    if (stationName && commodity && !isNaN(quantity) && quantity > 0) {
+    if (stationName && commodity && !isNaN(quantity)) {
+        // Initialize the commodity if it doesn't exist yet
         if (!stations[stationName].commodities[commodity]) {
             stations[stationName].commodities[commodity] = 0;
         }
+        
+        // Update quantity with the provided value (add or subtract)
         stations[stationName].commodities[commodity] += quantity;
+
+        // If the quantity drops to zero or below, remove the commodity from the station
+        if (stations[stationName].commodities[commodity] <= 0) {
+            delete stations[stationName].commodities[commodity];
+        }
+
         saveStations();
         renderStationBlocks();
-        document.getElementById('commodityQuantity').value = '';
+        document.getElementById('commodityQuantity').value = ''; // Reset input field
     }
 }
 

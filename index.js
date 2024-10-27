@@ -28,13 +28,21 @@ function updateMarkersAndFitMap() {
     // Add markers for stations with commodities
     Object.keys(stations).forEach(stationName => {
         const station = stations[stationName];
-        const totalQuantity = Object.values(station.commodities || {}).reduce((acc, qty) => acc + qty, 0);
+        const commodities = station.commodities || {};
+        const totalQuantity = Object.values(commodities).reduce((acc, qty) => acc + qty, 0);
         
         // Only add marker if the station has commodities
         if (totalQuantity > 0) {
+            // Format the popup content to include a breakdown of commodities
+            const commodityDetails = Object.entries(commodities)
+                .map(([commodity, quantity]) => `<div>${commodity}: ${quantity}</div>`)
+                .join("");
+
+            const popupContent = `<strong>${stationName}</strong><br>Total Commodities: ${totalQuantity}<br><hr>${commodityDetails}`;
+
             const marker = L.marker([station.lat, station.lon])
                 .addTo(map)
-                .bindPopup(`<strong>${stationName}</strong><br>Total Commodities: ${totalQuantity}`);
+                .bindPopup(popupContent);
             markers.push(marker); // Add marker to array
 
             // Extend bounds to include this marker's location

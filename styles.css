@@ -29,5 +29,6 @@
 #map {
     height: calc(100vh - 50px); /* Full viewport height minus header */
     width: 100%;
-    background-color: #f0f0f0; /* Temporary color to see if the container shows up */
+    min-height: 500px; /* Fallback minimum height */
+    background-color: #f0f0f0; /* Helps debug if container renders properly */
 }

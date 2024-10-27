@@ -3,7 +3,7 @@ let stations = JSON.parse(localStorage.getItem('stations')) || {};
 
 // Initialize map and markers array
 let map;
-let markers = [];
+let markers = {};
 
 document.addEventListener("DOMContentLoaded", () => {
     // Initialize the map
@@ -19,8 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
 // Function to update markers and fit map view to bounds
 function updateMarkersAndFitMap() {
     // Clear existing markers from the map
-    markers.forEach(marker => map.removeLayer(marker));
-    markers = []; // Reset markers array
+    Object.keys(markers).forEach(markerKey => map.removeLayer(markers[markerKey]));
+    markers = {}; // Reset markers object
 
     // Define bounds to dynamically fit all markers
     const bounds = L.latLngBounds([]);
@@ -43,7 +43,7 @@ function updateMarkersAndFitMap() {
             const marker = L.marker([station.lat, station.lon])
                 .addTo(map)
                 .bindPopup(popupContent);
-            markers.push(marker); // Add marker to array
+            markers[stationName] = marker; // Add marker to object
 
             // Extend bounds to include this marker's location
             bounds.extend(marker.getLatLng());
@@ -51,7 +51,7 @@ function updateMarkersAndFitMap() {
     });
 
     // If we have at least one marker, fit the map view to the bounds
-    if (markers.length > 0) {
+    if (Object.keys(markers).length > 0) {
         map.fitBounds(bounds);
     } else {
         // Default view if no markers are available

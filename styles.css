@@ -1,34 +1,50 @@
-/* Ensure the header is displayed at the top */
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
 #header {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    background-color: #333;
-    color: white;
-}
-
-#header h1 {
-    margin: 0;
 }
 
 #operations-button {
-    padding: 8px 16px;
     background-color: #007bff;
     color: white;
     border: none;
+    padding: 8px 16px;
     border-radius: 4px;
     cursor: pointer;
 }
 
-#operations-button:hover {
-    background-color: #0056b3;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-/* Define map container height */
+.form-section {
+    margin-bottom: 20px;
+}
+
 #map {
-    height: calc(100vh - 50px); /* Full viewport height minus header */
-    width: 100%;
-    min-height: 500px; /* Fallback minimum height */
-    background-color: #f0f0f0; /* Helps debug if container renders properly */
+    height: 100vh;
+}
+
+.station-box {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 5px 0;
+}
+
+.commodity-box {
+    padding: 5px;
+    border-top: 1px solid #ddd;
+    margin-top: 5px;
 }
